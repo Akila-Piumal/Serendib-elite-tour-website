@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import TourPackagesSection from "@/components/TourPackagesSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ChatWidget from "@/components/ChatWidget";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <Footer />
       <BackToTop />
       <WhatsAppButton />
+      <ChatWidget />
     </main>
   );
 };
