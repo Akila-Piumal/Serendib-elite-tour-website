@@ -5,6 +5,7 @@ import coastalImg from "@/assets/tour-coastal.jpg";
 import heritageImg from "@/assets/tour-heritage.jpg";
 import wellnessImg from "@/assets/tour-wellness.jpg";
 import wildlifeImg from "@/assets/tour-wildlife.jpg";
+import { useNavigate } from "react-router-dom";
 
 const tours = [
   {
@@ -205,9 +206,11 @@ const TourCard = ({ tour, index }: { tour: typeof tours[0]; index: number }) => 
   );
 };
 
-const TourPackagesSection = () => {
+const TourPackagesSection = ({ showAll = false }: { showAll?: boolean }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const navigate = useNavigate();
+  const displayedTours = showAll ? tours : tours.slice(0, 2);
 
   return (
     <section id="packages" className="luxury-section bg-midnight" ref={ref}>
@@ -230,10 +233,27 @@ const TourPackagesSection = () => {
         </motion.div>
 
         <div className="space-y-8">
-          {tours.map((tour, i) => (
+          {displayedTours.map((tour, i) => (
             <TourCard key={tour.title} tour={tour} index={i} />
           ))}
         </div>
+
+        {!showAll && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center mt-12"
+          >
+            <button
+              onClick={() => navigate("/tour-packages")}
+              className="inline-flex items-center gap-3 border border-gold/40 text-gold px-10 py-4 text-xs tracking-[0.25em] uppercase font-body hover:bg-gold hover:text-midnight transition-all duration-300 group"
+            >
+              <span>View All Packages</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
