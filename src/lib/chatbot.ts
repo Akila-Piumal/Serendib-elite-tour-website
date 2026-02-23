@@ -1,5 +1,5 @@
 // Replace this with your actual OpenAI API key
-const GROQ_API_KEY = "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";
+const GROQ_API_KEY = process.env.NEXT_PUBLIC_GROQ_API_KEY
 
 export type ChatMessage = {
   role: "user" | "assistant" | "system";
