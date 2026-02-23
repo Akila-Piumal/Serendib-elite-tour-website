@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, X, Send, Loader2 } from "lucide-react";
 import { streamChat, type ChatMessage } from "@/lib/chatbot";
+import ReactMarkdown from "react-markdown";
 
 const ChatWidget = () => {
   const [open, setOpen] = useState(false);
@@ -102,7 +103,22 @@ const ChatWidget = () => {
                         : "bg-muted text-foreground rounded-bl-none"
                     }`}
                   >
-                    {msg.content}
+                    <ReactMarkdown
+                      components={{
+                        p: ({ children }) => <p className="mb-1 last:mb-0">{children}</p>,
+                        strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                        ol: ({ children }) => <ol className="list-decimal list-inside space-y-1 my-1">{children}</ol>,
+                        ul: ({ children }) => <ul className="list-disc list-inside space-y-1 my-1">{children}</ul>,
+                        li: ({ children }) => <li className="leading-snug">{children}</li>,
+                        a: ({ href, children }) => (
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="underline text-accent hover:opacity-80">
+                            {children}
+                          </a>
+                        ),
+                      }}
+                    >
+                      {msg.content}
+                    </ReactMarkdown>
                   </div>
                 </div>
               ))}
