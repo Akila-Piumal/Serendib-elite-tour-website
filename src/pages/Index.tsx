@@ -9,6 +9,7 @@ import BookingSection from "@/components/BookingSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import TourPackagesSection from "@/components/TourPackagesSection";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <ExperiencesSection />
+      <TourPackagesSection />
       <WhyChooseSection />
       <GallerySection />
       <TestimonialsSection />
