@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
   { label: "Experiences", href: "#experiences" },
@@ -14,6 +15,20 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (location.pathname !== "/") {
+      window.location.href = "/" + href;
+    } else {
+      const el = document.querySelector(href);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -28,7 +43,7 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
+          scrolled || !isHome
             ? "bg-midnight/90 backdrop-blur-md py-4"
             : "bg-transparent py-6"
         }`}
@@ -44,6 +59,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-ivory/80 hover:text-gold text-sm font-body tracking-widest uppercase transition-colors duration-300"
               >
                 {link.label}
@@ -53,6 +69,7 @@ const Navbar = () => {
 
           <a
             href="#booking"
+            onClick={(e) => handleNavClick(e, "#booking")}
             className="hidden md:inline-block border border-gold/50 text-gold px-6 py-2.5 text-xs tracking-widest uppercase font-body hover:bg-gold hover:text-midnight transition-all duration-300"
           >
             Book Now
@@ -88,7 +105,10 @@ const Navbar = () => {
                 <motion.a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    handleNavClick(e, link.href);
+                    setMobileOpen(false);
+                  }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
@@ -99,7 +119,10 @@ const Navbar = () => {
               ))}
               <motion.a
                 href="#booking"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => {
+                  handleNavClick(e, "#booking");
+                  setMobileOpen(false);
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}

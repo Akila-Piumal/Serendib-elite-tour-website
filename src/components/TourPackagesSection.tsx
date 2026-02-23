@@ -194,7 +194,7 @@ const TourCard = ({ tour, index }: { tour: typeof tours[0]; index: number }) => 
 
           {/* CTA */}
           <a
-            href="#booking"
+            href="/#booking"
             className="inline-flex items-center gap-2 border border-gold/40 text-gold px-7 py-3 text-xs tracking-[0.2em] uppercase font-body hover:bg-gold hover:text-midnight transition-all duration-300 w-fit group/btn"
           >
             <span>Enquire Now</span>
