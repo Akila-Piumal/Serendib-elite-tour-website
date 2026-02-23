@@ -10,6 +10,7 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import TourPackagesSection from "@/components/TourPackagesSection";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <CTASection />
       <Footer />
       <BackToTop />
+      <WhatsAppButton />
     </main>
   );
 };

@@ -1,4 +1,5 @@
-import { Instagram, Facebook, Twitter, Mail, MapPin, Phone } from "lucide-react";
+import { Instagram, Facebook, Twitter, Mail, MapPin, Phone, MessageCircle  } from "lucide-react";
+import { WHATSAPP_URL } from "./WhatsAppButton";
 
 const Footer = () => {
   return (
@@ -48,6 +49,15 @@ const Footer = () => {
                 <Phone size={14} className="text-gold" />
                 +94 11 234 5678
               </div>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-ivory/50 hover:text-[#25D366] text-sm font-body transition-colors"
+              >
+                <MessageCircle size={14} className="text-[#25D366]" />
+                WhatsApp
+              </a>
             </div>
 
             {/* Social */}

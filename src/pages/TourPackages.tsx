@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import TourPackagesSection from "@/components/TourPackagesSection";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const TourPackages = () => {
   return (
@@ -12,6 +13,7 @@ const TourPackages = () => {
       </div>
       <Footer />
       <BackToTop />
+      <WhatsAppButton />
     </main>
   );
 };
